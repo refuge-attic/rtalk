@@ -25,7 +25,6 @@
         "jshint": "2.1.4"
     },
     "scripts": {
-        "postinstall": "grunt install",
         "test": "grunt test"
     },
     "licenses": [

@@ -1,5 +1,7 @@
 /*
- * Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
+ *  
+ * Copyright (c) 2013 Benoit Chesneau <benoitc@refuge.io>
+ * Copyright (c) 2013 Nicolas Dufour  <nicolas.dufour@nemoworld.info>
  *  
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"), 
@@ -23,55 +25,10 @@
 /*global module, require*/
 module.exports = function (grunt) {
     'use strict';
-
-    var common = require("./tasks/lib/common")(grunt);
     
     // Project configuration.
     grunt.initConfig({
         pkg  : grunt.file.readJSON("package.json"),
-        meta : {
-            src   : [
-                'src/**/*.js',
-                '!src/thirdparty/**',
-                '!**/node_modules/**/*.js',
-                '!src/**/*-min.js',
-                '!src/**/*.min.js'
-            ],
-            test : [
-                'test/**/*.js',
-                '!test/perf/*-files/**/*.js',
-                '!test/spec/*-files/**/*.js',
-                '!test/smokes/**',
-                '!test/temp/**',
-                '!test/thirdparty/**',
-                '!test/**/node_modules/**/*.js'
-            ],
-            grunt: [
-                'Gruntfile.js',
-                'tasks/**/*.js'
-            ],
-            /* specs that can run in phantom.js */
-            specs : [
-            ]
-        },
-        watch: {
-            all : {
-                files: ['**/*', '!**/node_modules/**'],
-                tasks: ['jshint']
-            },
-            grunt : {
-                files: ['<%= meta.grunt %>', 'tasks/**/*'],
-                tasks: ['jshint:grunt']
-            },
-            src : {
-                files: ['<%= meta.src %>', 'src/**/*'],
-                tasks: ['jshint:src']
-            },
-            test : {
-                files: ['<%= meta.test %>', 'test/**/*'],
-                tasks: ['jshint:test']
-            }
-        },
         jasmine : {
             // Your project's source files
             src : 'src/**/*.js',
@@ -88,17 +45,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     
-    // task: install
-    grunt.registerTask('install', ['write-config']);
+
 
     // task: test
     grunt.registerTask('test', ['jasmine']);
     //grunt.registerTask('test', ['jshint:all', 'jasmine', jasmine-node']);
-
-    // task: set-sprint
-    // Update sprint number in package.json and rewrite src/config.json
-    grunt.registerTask('set-sprint', ['update-sprint-number', 'write-config']);
-
+ 
     // Default task.
     grunt.registerTask('default', ['test']);
 };
