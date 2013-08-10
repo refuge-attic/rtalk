@@ -1,5 +1,6 @@
 
 <script src="thirdparty/js-nacl/lib/nacl.js"></script>
+<script src="thirdparty/js-scrypt/browser/scrypt.js"></script>
 <script src="thirdparty/jsbn/jsbn.js"></script>
 <script src="thirdparty/jsbn/jsbn2.js"></script>
 <script src="lib/util.js"></script>
@@ -7,13 +8,16 @@
 
 <script>
 
-  var keypair = nacl.crypto_box_keypair();
+	var key8byte = scrypt.crypto_scrypt(scrypt.encode_utf8("pleaseletmein"),
+																			 scrypt.encode_utf8("SodiumChloride"),
+																			 16384, 8, 1, 64);
 
-  window.console.log(keypair.boxPk);
+  var keypair = nacl.crypto_box_keypair_from_seed(key8byte);
+
+  window.console.log(nacl.to_hex(key8byte));
   window.console.log(nacl.to_hex(nacl.crypto_hash(keypair.boxPk)));
 
 	window.console.log(base58.encode(keypair.boxPk));
 
-  alert(nacl.to_hex(nacl.random_bytes(16))); 
 
 </script>
