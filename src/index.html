@@ -1,0 +1,19 @@
+
+<script src="thirdparty/js-nacl/lib/nacl.js"></script>
+<script src="thirdparty/jsbn/jsbn.js"></script>
+<script src="thirdparty/jsbn/jsbn2.js"></script>
+<script src="lib/util.js"></script>
+<script src="lib/base58.js"></script>
+
+<script>
+
+  var keypair = nacl.crypto_box_keypair();
+
+  window.console.log(keypair.boxPk);
+  window.console.log(nacl.to_hex(nacl.crypto_hash(keypair.boxPk)));
+
+	window.console.log(base58.encode(keypair.boxPk));
+
+  alert(nacl.to_hex(nacl.random_bytes(16))); 
+
+</script>
