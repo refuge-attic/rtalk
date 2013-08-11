@@ -1,5 +1,5 @@
 var base58 = {
-	
+
 	alphabet: "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz",
 	validRegex: /^[1-9A-HJ-NP-Za-km-z]+$/,
 	base: BigInteger.valueOf(58),
@@ -48,14 +48,14 @@ var base58 = {
 			var alphaIndex = this.alphabet.indexOf(input[i]);
 			if (alphaIndex < 0) {
 				throw "Invalid character";
-			}	
+			}
 			bi = bi.add(BigInteger.valueOf(alphaIndex)
-					 .multiply(this.base.pow(input.length - 1 -i)));
+					.multiply(this.base.pow(input.length - 1 -i)));
 
-									// This counts leading zero bytes
-			if (input[i] == "1") 
+			// This counts leading zero bytes
+			if (input[i] == "1")
 				leadingZerosNum++;
-			else 
+			else
 				leadingZerosNum = 0;
 		}
 

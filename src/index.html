@@ -1,23 +1,19 @@
 
+<script src="thirdparty/crypto-js/crypto.js"></script>
+<script src="thirdparty/crypto-js/x64-crypto.js"></script>
+<script src="thirdparty/crypto-js/ripemd160.js"></script>
+<script src="thirdparty/crypto-js/sha512.js"></script>
 <script src="thirdparty/js-nacl/lib/nacl.js"></script>
 <script src="thirdparty/js-scrypt/browser/scrypt.js"></script>
 <script src="thirdparty/jsbn/jsbn.js"></script>
 <script src="thirdparty/jsbn/jsbn2.js"></script>
+<script src="thirdparty/lodash.js"></script>
 <script src="lib/util.js"></script>
 <script src="lib/base58.js"></script>
+<script src="lib/session.js"></script>
 
 <script>
 
-	var key8byte = scrypt.crypto_scrypt(scrypt.encode_utf8("pleaseletmein"),
-																			 scrypt.encode_utf8("SodiumChloride"),
-																			 16384, 8, 1, 64);
-
-  var keypair = nacl.crypto_box_keypair_from_seed(key8byte);
-
-  window.console.log(nacl.to_hex(key8byte));
-  window.console.log(nacl.to_hex(nacl.crypto_hash(keypair.boxPk)));
-
-	window.console.log(base58.encode(keypair.boxPk));
-
-
+	var s = new Session("pleaseletmein", "SodiumChloride");
+	window.console.log("session id:" + s.id);
 </script>

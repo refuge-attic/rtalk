@@ -99,3 +99,21 @@ BigInteger.fromByteArraySigned = function (ba) {
     return BigInteger.fromByteArrayUnsigned(ba);
   }
 };
+
+function hex2bytes(hex) {
+  if (hex.length % 2 != 0)
+		throw "key string length must be multiple of 2";
+
+	var arr = [];
+  for (var i = 0; i < hex.length; i += 2) {
+    arr.push(parseInt(hex.substring(i, i + 2), 16));
+  }
+  return arr;
+}
+
+function bytes2hex(bytes) {
+  return _.map(bytes, function(numByte) {
+    var hexByte = numByte.toString(16);
+    return hexByte.length > 1 ? hexByte : '0' + hexByte;
+  }).join('');
+};
