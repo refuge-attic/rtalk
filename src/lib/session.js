@@ -34,8 +34,7 @@ Session.prototype._init_id = function() {
 
 	// 2. peform sha512 on spub and perform ripemd 160  hash on it
 	id = CryptoJS.RIPEMD160(nacl.to_hex(nacl.crypto_hash_string(id)),
-			{asBytes: true})
-	.toString();
+			{asBytes: true}).toString();
 
 	// 3. add version to the ripe
 	id = this.version + id;
