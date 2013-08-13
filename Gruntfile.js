@@ -43,9 +43,17 @@ var fileHeader = '// <%= pkg.name %>.<%= pkg.release %> - ' +
 				build : ["./dist"]
 			},
 
+			watch: {
+				scripts: {
+					files: '**/*.js',
+					tasks: ['jshint'],
+					options: {
+							interrupt: true,
+					},
+				},
+			},
+
 			'concat': {
-
-
 				all: {
 					src: grunt.util._.flatten([
 								 "src/deps/crypto-js/crypto.js", "src/deps/crypto-js/ripemd160.js",
@@ -74,8 +82,13 @@ var fileHeader = '// <%= pkg.name %>.<%= pkg.release %> - ' +
 				specs : 'specs/**/*spec.js',
 				// Your spec helper files
 				helpers : 'specs/helpers/*.js'
-			}
+			},
 
+			jshint: {
+				files: [
+					'src/*.js',
+				],
+			},
 		});
 
 			// load dependencies

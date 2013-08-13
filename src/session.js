@@ -24,7 +24,7 @@ Session.prototype._init = function(password, salt) {
 	this._box_keypair = nacl.crypto_box_keypair_from_seed(key8bytes);
 	this._sign_keypair = nacl.crypto_sign_keypair_from_seed(
 			nacl.crypto_hash_string(key8bytes).subarray(0, 32));
-}
+};
 
 Session.prototype._init_id = function() {
 
@@ -53,4 +53,4 @@ Session.prototype._init_id = function() {
 
 	// set the session id
 	this.id = id;
-}
+};

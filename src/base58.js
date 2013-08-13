@@ -13,6 +13,7 @@ var base58 = {
 	 * Ported to JavaScript by Stefan Thomas.
 	 */
 	encode: function (input) {
+
 		var bi = BigInteger.fromByteArrayUnsigned(input);
 		var chars = [];
 
@@ -58,6 +59,7 @@ var base58 = {
 			else
 				leadingZerosNum = 0;
 		}
+
 
 
 		var bytes = bi.toByteArrayUnsigned();
