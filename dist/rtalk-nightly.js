@@ -4027,7 +4027,7 @@ BigInteger.valueOf = nbv;
 BigInteger.prototype.toByteArrayUnsigned = function () {
   var ba = this.abs().toByteArray();
   if (ba.length) {
-    if (ba[0] == 0) {
+    if (ba[0] === 0) {
       ba = ba.slice(1);
     }
     return ba.map(function (v) {
@@ -4118,7 +4118,7 @@ BigInteger.fromByteArraySigned = function (ba) {
 };
 
 function hex2bytes(hex) {
-  if (hex.length % 2 != 0)
+  if (hex.length % 2 !== 0)
 		throw "key string length must be multiple of 2";
 
 	var arr = [];
@@ -4153,6 +4153,7 @@ var base58 = {
 	 * Ported to JavaScript by Stefan Thomas.
 	 */
 	encode: function (input) {
+
 		var bi = BigInteger.fromByteArrayUnsigned(input);
 		var chars = [];
 
@@ -4165,7 +4166,7 @@ var base58 = {
 
 		// Convert leading zeros too.
 		for (var i = 0; i < input.length; i++) {
-			if (input[i] == 0x00) {
+			if (input[i] === 0x00) {
 				chars.unshift(this.alphabet[0]);
 			} else break;
 		}
@@ -4199,7 +4200,6 @@ var base58 = {
 				leadingZerosNum = 0;
 		}
 
-
 		var bytes = bi.toByteArrayUnsigned();
 
 		// Add leading zeros
@@ -4221,9 +4221,7 @@ var Session = function(password, salt, options) {
 	this._init(password, salt);
 
 	this._init_id();
-
-
-}
+};
 
 Session.prototype._init = function(password, salt) {
 	// calculate box and sign keypairs from the password and salt
@@ -4235,7 +4233,7 @@ Session.prototype._init = function(password, salt) {
 	this._box_keypair = nacl.crypto_box_keypair_from_seed(key8bytes);
 	this._sign_keypair = nacl.crypto_sign_keypair_from_seed(
 			nacl.crypto_hash_string(key8bytes).subarray(0, 32));
-}
+};
 
 Session.prototype._init_id = function() {
 
@@ -4264,4 +4262,4 @@ Session.prototype._init_id = function() {
 
 	// set the session id
 	this.id = id;
-}
+};

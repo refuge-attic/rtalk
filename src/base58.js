@@ -26,7 +26,7 @@ var base58 = {
 
 		// Convert leading zeros too.
 		for (var i = 0; i < input.length; i++) {
-			if (input[i] == 0x00) {
+			if (input[i] === 0x00) {
 				chars.unshift(this.alphabet[0]);
 			} else break;
 		}
@@ -59,8 +59,6 @@ var base58 = {
 			else
 				leadingZerosNum = 0;
 		}
-
-
 
 		var bytes = bi.toByteArrayUnsigned();
 

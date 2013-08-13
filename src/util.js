@@ -10,7 +10,7 @@ BigInteger.valueOf = nbv;
 BigInteger.prototype.toByteArrayUnsigned = function () {
   var ba = this.abs().toByteArray();
   if (ba.length) {
-    if (ba[0] == 0) {
+    if (ba[0] === 0) {
       ba = ba.slice(1);
     }
     return ba.map(function (v) {
@@ -101,7 +101,7 @@ BigInteger.fromByteArraySigned = function (ba) {
 };
 
 function hex2bytes(hex) {
-  if (hex.length % 2 != 0)
+  if (hex.length % 2 !== 0)
 		throw "key string length must be multiple of 2";
 
 	var arr = [];

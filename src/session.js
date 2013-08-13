@@ -10,9 +10,7 @@ var Session = function(password, salt, options) {
 	this._init(password, salt);
 
 	this._init_id();
-
-
-}
+};
 
 Session.prototype._init = function(password, salt) {
 	// calculate box and sign keypairs from the password and salt
