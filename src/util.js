@@ -113,10 +113,9 @@ function hex2bytes(hex) {
 
 function bytes2hex(bytes) {
 	var arr = [];
-	for (var i = 0; i < bytes.length; i++) {
-		var hex = bytes[i].toString(16);
-		hex = hex.length > 1 ? hex : '0' + hex;
-		arr.push(hex);
-	}
-	return arr.join('');
+
+	bytes.map(function(b) {
+		var hex = b.toString(16);
+		return hex.length > 1 ? hex : '0' + hex;
+	}).join('');
 }
